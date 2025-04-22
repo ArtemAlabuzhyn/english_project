@@ -1,0 +1,33 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWordModal">
+    Add word
+</button>
+
+<div class="modal fade" id="addWordModal" tabindex="-1" aria-labelledby="addWordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addWordModalLabel">Add new word</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% include 'english_course/partials/form_errors.html' %}
+                <form method="post" action="{% url 'english_course:add_word' user.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.word_text.label_tag }}
+                        {{ form.word_text }}
+                        <small class="form-text">{{ form.word_text.help_text }}</small>
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.translation.label_tag }}
+                        {{ form.translation }}
+                        <p></p>
+                        <small class="form-text">{{ form.translation.help_text }}</small>
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Full Vocabulary {% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">All Words</h2>
+
+        {% if page_obj.object_list %}
+            <ul>
+                {% for word in page_obj %}
+                    <li>{{ word.word.word }} — {{ word.translation }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No words found. You’re either too lazy or something went wrong.</p>
+        {% endif %}
+
+        {% include 'english_course/partials/pagination.html' with page_obj=page_obj %}
+    </div>
+{% endblock %}

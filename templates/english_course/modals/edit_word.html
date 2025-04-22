@@ -1,0 +1,35 @@
+<button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+        data-bs-target="#editModal{{ user_word.id }}" title="Edit Word">✏️
+</button>
+<div class="modal fade" id="editModal{{ user_word.id }}" tabindex="-1"
+     aria-labelledby="editModal{{ user_word.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModal{{ user_word.id }}">Edit Word</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                {% include 'english_course/partials/form_errors.html' %}
+
+                <form method="post"
+                      action="{% url 'english_course:edit_word' user_word.id %}">
+                    {% csrf_token %}
+                    <div class="md-3">
+                        <label class="form-label">Word</label>
+                        <p><strong>{{ user_word.word.word }}</strong></p>
+                        <input type="hidden" name="word" value="{{ user_word.word.id }}">
+                    </div>
+                    <div class="md-3">
+                        <label class="form-label">Translation</label>
+                        <input type="text" class="form-control" name="translation"
+                               value="{{ user_word.translation }}">
+                    </div>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

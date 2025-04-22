@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Create User{% endblock %}
+
+{% block content %}
+    <h2>Create New User</h2>
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li><strong>{{ field.label }}:</strong>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.password1.id_for_label }}">Password</label>
+            {{ form.password1|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.password2.id_for_label }}">Repeat Password</label>
+            {{ form.password2|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+            {{ form.first_name|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+            {{ form.last_name|add_class:"form-control" }}
+        </div>
+
+        {% if form.role %}
+            <div class="mb-3">
+                <label for="{{ form.role.id_for_label }}">Role</label>
+                {{ form.role|add_class:"form-control" }}
+            </div>
+        {% endif %}
+
+        <button type="submit">Create</button>
+        <a href="{% url 'english_course:user' user_id=request.user.id %}">Cancel</a>
+    </form>
+{% endblock %}

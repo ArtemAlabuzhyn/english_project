@@ -1,0 +1,38 @@
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModalLabel">
+    Edit Profile
+</button>
+
+<div class="modal fade" id="editProfileModalLabel" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{% url 'english_course:edit_profile' user.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    {% include 'english_course/partials/form_errors.html' with form=user_form %}
+                    <div class="mb-3">
+                        <label for="id_first_name" class="form-label">First Name</label>
+                        {{ user_form.first_name }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_last_name" class="form-label">Last Name</label>
+                        {{ user_form.last_name }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_age" class="form-label">Age</label>
+                        {{ user_form.age }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

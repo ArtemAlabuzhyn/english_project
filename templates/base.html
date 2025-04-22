@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a href="{% url "english_course:index" %}" class="navbar-brand">English Lessons</a>
+        {% if request.user.is_authenticated and request.user.role == 'admin' %}
+        <span class="navbar-text">
+                <a href="/admin/">Admin</a>
+            </span>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+        <div>
+            <form method="post" action="{% url 'english_course:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-light btn-sm">Exit from this hell</button>
+            </form>
+        </div>
+    {% endif %}
+</nav>
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>
