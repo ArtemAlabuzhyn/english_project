@@ -16,4 +16,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='english_course:login'), name='logout'),
     path('create_user/', views.create_user, name='create_user'),
     path('vocabulary/<int:user_id>/', views.full_vocabulary, name='full_vocabulary'),
+
 ]

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'english_course.apps.EnglishCourseConfig',
     'widget_tweaks',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

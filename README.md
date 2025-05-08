@@ -1,4 +1,4 @@
-# EnglishProject
+# English Project
 
 **EnglishProject** is a Django-based web application designed for managing vocabulary and educational user roles. The app simulates a lightweight platform for language learning environments, where access is controlled by administrators and users are assigned roles.
 
