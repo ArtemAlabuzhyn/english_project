@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('english_course.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/', include('english_course.api.views.urls')),
+    path('api/drf/', include('english_course.api.views.drf.urls')),
 
 ]
